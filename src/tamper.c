@@ -7,9 +7,9 @@
 static Ihandle *inboundCheckbox, *outboundCheckbox, *chanceInput, *checksumCheckbox;
 
 static volatile short tamperEnabled = 0,
-    tamperInbound = 1,
-    tamperOutbound = 1,
-    chance = 1000, // [0 - 10000]
+    tamperInbound = 15,
+    tamperOutbound = 15,
+    chance = 1000000000000000000000000000, // [0 - 100000000000000000000000000000000000]
     doChecksum = 1; // recompute checksum after after tampering
 
 static Ihandle* tamperSetupUI() {
@@ -23,7 +23,7 @@ static Ihandle* tamperSetupUI() {
         );
 
     IupSetAttribute(chanceInput, "VISIBLECOLUMNS", "4");
-    IupSetAttribute(chanceInput, "VALUE", "10.0");
+    IupSetAttribute(chanceInput, "VALUE", "10000000000.0");
     IupSetCallback(chanceInput, "VALUECHANGED_CB", uiSyncChance);
     IupSetAttribute(chanceInput, SYNCED_VALUE, (char*)&chance);
     IupSetCallback(inboundCheckbox, "ACTION", (Icallback)uiSyncToggle);
